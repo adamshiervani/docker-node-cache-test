@@ -138,7 +138,7 @@ jobs:
         run: |
           mkdir -p /home/runner/debian
       - name: Cache Download folder
-        uses: actions/cache@main
+        uses: actions/cache@v3
         with:
           path: /home/runner/debian
           key: ${{ runner.os }}-/home/runner/1gbfilecache
