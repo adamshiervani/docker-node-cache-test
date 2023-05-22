@@ -138,7 +138,7 @@ jobs:
         uses: buildjet/cache@main
         with:
           path: ~/debian
-          key: ${{ runner.os }}-debian-11.7.1-arm64-DVD-1.iso
+          key: ${{ runner.os }}-debian-11.7.2-arm64-DVD-1.iso
         env:
           PARALLEL_DOWNLOAD: 'true'
 
