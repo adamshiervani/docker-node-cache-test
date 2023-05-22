@@ -143,7 +143,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-downloadss
+          key: ${{ runner.os }}-downloadssss
 
       - name: List Download folder
         run: |
@@ -151,11 +151,11 @@ jobs:
 
       - name: Download file
         run: |
-          curl https://speed.hetzner.de/100MB.bin -o ./debian/100MB.bin && ls -la /home/runner/debian
+          curl https://speed.hetzner.de/100MB.bin -o /home/runner/debian/100MB.bin && ls -la /home/runner/debian
 
       - name: Save Primes
         id: cache-download-save
         uses: actions/cache/save@v3
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-downloadss
+          key: ${{ runner.os }}-downloadssss
