@@ -138,10 +138,7 @@ jobs:
         uses: buildjet/cache@main
         with:
           path: ~/debian
-          # Key is named differently to avoid collision
-          key: ${{ runner.os }}-debian-11.7.0-arm64-DVD-1.iso
-          restore-keys: |
-            ${{ runner.os }}-debian-11.7.0-arm64-DVD-1.iso
+          key: ${{ runner.os }}-debian-11.7.1-arm64-DVD-1.iso
         env:
           PARALLEL_DOWNLOAD: 'true'
 
