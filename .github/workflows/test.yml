@@ -82,7 +82,7 @@ jobs:
   #          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
   with_local_cache:
-    name: BuildJet Cache on GitHub runner
+    name: GitHub Cache on GitHub runner
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
