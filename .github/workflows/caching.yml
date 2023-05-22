@@ -143,7 +143,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-downloadsssss
+          key: ${{ runner.os }}-raspian
 
       - name: List Download folder
         run: |
@@ -151,11 +151,11 @@ jobs:
 
       - name: Download file
         run: |
-          curl https://research.nhm.org/pdfs/10840/10840.pdf -o /home/runner/debian/100MB.bin && ls -la /home/runner/debian
+          curl https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf.img.xz -o /home/runner/debian/100MB.bin && ls -la /home/runner/debian
 
       - name: Save Primes
         id: cache-download-save
         uses: actions/cache/save@v3
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-downloadsssss
+          key: ${{ runner.os }}-raspian
