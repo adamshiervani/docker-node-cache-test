@@ -147,5 +147,5 @@ jobs:
 
       - name: Download file
         run: |
-          wget https://speed.hetzner.de/1GB.bin -o /home/runner/debian/1GB.bin && ls -la ~/debian
+          wget https://speed.hetzner.de/1GB.bin -O /home/runner/debian/1GB.bin && ls -la ~/debian
         
