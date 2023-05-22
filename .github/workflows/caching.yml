@@ -137,7 +137,7 @@ jobs:
       - name: Cache Download folder
         uses: buildjet/cache@main
         with:
-          path: ~/debian-11.7.0-arm64-DVD-1.iso
+          path: ~/debian
           # Key is named differently to avoid collision
           key: ${{ runner.os }}-debian-11.7.0-arm64-DVD-1.iso
           restore-keys: |
@@ -147,5 +147,5 @@ jobs:
 
       - name: Download file
         run: |
-          wget https://mirror.dkm.cz/debian-cd/11.7.0/arm64/iso-dvd/debian-11.7.0-arm64-DVD-1.iso -o ~/debian-11.7.0-arm64-DVD-1.iso
+          mkdir ~/debian && wget https://mirror.dkm.cz/debian-cd/11.7.0/arm64/iso-dvd/debian-11.7.0-arm64-DVD-1.iso -o ~/debian/debian-11.7.0-arm64-DVD-1.iso
         
