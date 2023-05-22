@@ -141,11 +141,11 @@ jobs:
         uses: buildjet/cache@main
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-/home/runner/debianss
+          key: ${{ runner.os }}-/home/runner/debiansss
         env:
           PARALLEL_DOWNLOAD: 'true'
 
       - name: Download file
         run: |
-          wget https://mirror.dkm.cz/debian-cd/11.7.0/arm64/iso-dvd/debian-11.7.0-arm64-DVD-1.iso -o /home/runner/debian/debian-11.7.0-arm64-DVD-1.iso && ls -la ~/debian
+          wget https://speed.hetzner.de/1GB.bin -o /home/runner/debian/1GB.bin && ls -la ~/debian
         
