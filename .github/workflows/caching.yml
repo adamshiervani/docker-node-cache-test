@@ -137,15 +137,21 @@ jobs:
       - name: Create Download folder
         run: |
           mkdir -p /home/runner/debian
-      - name: Cache Download folder
-        uses: actions/cache@v3
+
+      - name: Restore Download folder
+        id: cache-download-restore
+        uses: actions/cache/restore@v3
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-/home/runner/1mbfilecache
-        env:
-          PARALLEL_DOWNLOAD: 'true'
+          key: ${{ runner.os }}-download
 
       - name: Download file
         run: |
           wget https://speed.hetzner.de/100MB.bin -O /home/runner/debian/100MB.bin && ls -la /home/runner/debian
-        
+
+      - name: Save Primes
+        id: cache-download-save
+        uses: actions/cache/save@v3
+        with:
+          path: /home/runner/debian
+          key:  ${{ runner.os }}-download
