@@ -137,12 +137,12 @@ jobs:
       - name: Cache Download folder
         uses: buildjet/cache@main
         with:
-          path: ~/debian
-          key: ${{ runner.os }}-debian-11.7.2-arm64-DVD-1.iso
+          path: /home/runner/debian
+          key: ${{ runner.os }}-/home/runner/debian
         env:
           PARALLEL_DOWNLOAD: 'true'
 
       - name: Download file
         run: |
-          mkdir ~/debian && wget https://mirror.dkm.cz/debian-cd/11.7.0/arm64/iso-dvd/debian-11.7.0-arm64-DVD-1.iso -o ~/debian/debian-11.7.0-arm64-DVD-1.iso && ls -la ~/debian
+          mkdir ~/debian && wget https://mirror.dkm.cz/debian-cd/11.7.0/arm64/iso-dvd/debian-11.7.0-arm64-DVD-1.iso -o /home/runner/debian/debian-11.7.0-arm64-DVD-1.iso && ls -la ~/debian
         
