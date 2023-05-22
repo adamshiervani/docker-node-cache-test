@@ -134,13 +134,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Create Download folder
+        run: |
+          mkdir -p /home/runner/debian
 
       - name: Restore Download folder
         id: cache-download-restore
         uses: actions/cache/restore@v3
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-downloadssss
+          key: ${{ runner.os }}-downloadsss
 
       - name: Download file
         run: |
@@ -151,4 +154,4 @@ jobs:
         uses: actions/cache/save@v3
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-downloadssss
+          key: ${{ runner.os }}-downloadsss
