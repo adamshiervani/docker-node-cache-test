@@ -219,7 +219,7 @@ jobs:
         with:
           path: ~/debian-11.7.0-arm64-DVD-1.iso
           # Key is named differently to avoid collision
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ hashFiles('~/debian-11.7.0-arm64-DVD-1.iso') }}
           restore-keys: |
             ${{ runner.os }}-buildx
         env:
