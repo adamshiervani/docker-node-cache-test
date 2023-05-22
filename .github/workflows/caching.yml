@@ -141,7 +141,7 @@ jobs:
         uses: buildjet/cache@main
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-/home/runner/debianssss
+          key: ${{ runner.os }}-/home/runner/debiansssss
         env:
           PARALLEL_DOWNLOAD: 'true'
 
