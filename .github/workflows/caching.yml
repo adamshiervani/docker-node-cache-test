@@ -134,15 +134,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Create Download folder
+        run: |
+          mkdir -p /home/runner/debian
       - name: Cache Download folder
         uses: buildjet/cache@main
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-/home/runner/debian
+          key: ${{ runner.os }}-/home/runner/debianss
         env:
           PARALLEL_DOWNLOAD: 'true'
 
       - name: Download file
         run: |
-          mkdir ~/debian && wget https://mirror.dkm.cz/debian-cd/11.7.0/arm64/iso-dvd/debian-11.7.0-arm64-DVD-1.iso -o /home/runner/debian/debian-11.7.0-arm64-DVD-1.iso && ls -la ~/debian
+          wget https://mirror.dkm.cz/debian-cd/11.7.0/arm64/iso-dvd/debian-11.7.0-arm64-DVD-1.iso -o /home/runner/debian/debian-11.7.0-arm64-DVD-1.iso && ls -la ~/debian
         
