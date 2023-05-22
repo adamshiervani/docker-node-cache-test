@@ -82,7 +82,7 @@ jobs:
   #          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
   with_local_cache:
-    name: GitHub Cache on GitHub runner
+    name: Docker with GitHub Cache on GitHub runner
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -124,7 +124,7 @@ jobs:
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
   with_new_local_cache_github:
-    name: BuildJet Cache on GitHub runner
+    name: Docker with BuildJet Cache on GitHub runner
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -167,7 +167,7 @@ jobs:
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
   with_new_local_cache_buildjet:
-    name: BuildJet Cache on BuildJet runner
+    name: Docker with BuildJet Cache on BuildJet runner
     runs-on: buildjet-2vcpu-ubuntu-2204
     steps:
       - name: Checkout
@@ -208,3 +208,24 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+  raw_download_cache_buildjet:
+    name: Raw download BuildJet Cache on BuildJet runner
+    runs-on: buildjet-2vcpu-ubuntu-2204
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cache Download folder
+        uses: buildjet/cache@main
+        with:
+          path: ~/debian-11.7.0-arm64-DVD-1.iso
+          # Key is named differently to avoid collision
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-buildx
+        env:
+          PARALLEL_DOWNLOAD: 'true'
+
+      - name: Download file
+        run: |
+          wget https://mirror.dkm.cz/debian-cd/11.7.0/arm64/iso-dvd/debian-11.7.0-arm64-DVD-1.iso -o ~/debian-11.7.0-arm64-DVD-1.iso
+        
