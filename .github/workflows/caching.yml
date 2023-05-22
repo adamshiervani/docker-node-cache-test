@@ -134,9 +134,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Create Download folder
-        run: |
-          mkdir -p /home/runner/debian
 
       - name: Restore Download folder
         id: cache-download-restore
