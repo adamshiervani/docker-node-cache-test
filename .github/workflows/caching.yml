@@ -145,6 +145,10 @@ jobs:
           path: /home/runner/debian
           key: ${{ runner.os }}-downloadsss
 
+      - name: List Download folder
+        run: |
+          ls -la /home/runner/debian
+
       - name: Download file
         run: |
           wget https://speed.hetzner.de/100MB.bin -O /home/runner/debian/100MB.bin && ls -la /home/runner/debian
