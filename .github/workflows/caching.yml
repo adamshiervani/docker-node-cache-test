@@ -140,14 +140,13 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-raspian-multiples
+          key: ${{ runner.os }}-dl-raspian
 
       - name: Download file
         if: steps.cache-download-restore.outputs.cache-hit != 'true'
         run: |
           mkdir -p /home/runner/debian
           curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian1.img.xz && ls -la /home/runner/debian
-          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian2.img.xz && ls -la /home/runner/debian
 
   buildjet_cache_on_buildjet:
     name: BuildJet Cache on BuildJet runner
@@ -161,11 +160,10 @@ jobs:
         uses: buildjet/cache@v3
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-raspian-multiples
+          key: ${{ runner.os }}-dl-raspian
 
       - name: Download file
         if: steps.cache-download-restore.outputs.cache-hit != 'true'
         run: |
           mkdir -p /home/runner/debian
           curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian1.img.xz && ls -la /home/runner/debian
-          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian2.img.xz && ls -la /home/runner/debian
