@@ -134,29 +134,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Create Download folder
-        run: |
-          mkdir -p /home/runner/debian
 
-      - name: Restore Download folder
+      - name: Cache download
         id: cache-download-restore
-        uses: actions/cache/restore@v3
+        uses: actions/cache@v3
         with:
           path: /home/runner/debian
           key: ${{ runner.os }}-raspian-multiple
-
-      - name: List Download folder
-        run: |
-          ls -la /home/runner/debian
 
       - name: Download file
+        if: steps.cache-primes.outputs.cache-hit != 'true'
         run: |
+          mkdir -p /home/runner/debian
           curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian1.img.xz && ls -la /home/runner/debian
           curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian2.img.xz && ls -la /home/runner/debian
-
-      - name: Save Primes
-        id: cache-download-save
-        uses: actions/cache/save@v3
-        with:
-          path: /home/runner/debian
-          key: ${{ runner.os }}-raspian-multiple
