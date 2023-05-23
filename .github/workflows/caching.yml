@@ -168,6 +168,46 @@ jobs:
           mkdir -p /home/runner/debian
           curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian1.img.xz && ls -la /home/runner/debian
 
+  gh_cache_on_self_hosted:
+    name: GitHub Cache on Self Hosted runner (SFO3)
+    runs-on: sfo3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cache download
+        id: cache-download-restore
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/debian
+          key: ${{ runner.os }}-dl-gh_cache_on_self_hosted
+
+      - name: Download file
+        if: steps.cache-download-restore.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p /home/runner/debian
+          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian1.img.xz && ls -la /home/runner/debian
+
+  buildjet_cache_on_self_hosted:
+    name: BuildJet Cache on Self Hosted runner (SFO3)
+    runs-on: sfo3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cache download
+        id: cache-download-restore
+        uses: buildjet/cache@v3
+        with:
+          path: /home/runner/debian
+          key: ${{ runner.os }}-dl-buildjet_cache_on_self_hosted
+
+      - name: Download file
+        if: steps.cache-download-restore.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p /home/runner/debian
+          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian1.img.xz && ls -la /home/runner/debian
+
   buildjet_cache_on_github:
     name: BuildJet Cache on GitHub runner
     runs-on: ubuntu-latest
