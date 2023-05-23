@@ -128,8 +128,8 @@ jobs:
   #        run: |
   #          rm -rf /tmp/.buildx-cache
   #          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
-  raw_download_cache_buildjet:
-    name: Raw download BuildJet Cache on BuildJet runner
+  gh_cache_on_buildjet:
+    name: GitHub Cache on BuildJet runner
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -140,7 +140,28 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-raspian-multiple
+          key: ${{ runner.os }}-raspian-multiples
+
+      - name: Download file
+        if: steps.cache-download-restore.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p /home/runner/debian
+          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian1.img.xz && ls -la /home/runner/debian
+          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian2.img.xz && ls -la /home/runner/debianraw_download_cache_buildjet:
+
+  buildjet_cache_on_buildjet:
+    name: BuildJet Cache on BuildJet runner
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cache download
+        id: cache-download-restore
+        uses: buildjet/cache@v3
+        with:
+          path: /home/runner/debian
+          key: ${{ runner.os }}-raspian-multiples
 
       - name: Download file
         if: steps.cache-download-restore.outputs.cache-hit != 'true'
