@@ -143,7 +143,7 @@ jobs:
           key: ${{ runner.os }}-raspian-multiple
 
       - name: Download file
-        if: steps.cache-primes.outputs.cache-hit != 'true'
+        if: steps.cache-download-restore.outputs.cache-hit != 'true'
         run: |
           mkdir -p /home/runner/debian
           curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian1.img.xz && ls -la /home/runner/debian
