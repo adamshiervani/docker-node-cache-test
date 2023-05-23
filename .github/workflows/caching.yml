@@ -147,7 +147,7 @@ jobs:
         run: |
           mkdir -p /home/runner/debian
           curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian1.img.xz && ls -la /home/runner/debian
-          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian2.img.xz && ls -la /home/runner/debianraw_download_cache_buildjet:
+          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian2.img.xz && ls -la /home/runner/debian
 
   buildjet_cache_on_buildjet:
     name: BuildJet Cache on BuildJet runner
