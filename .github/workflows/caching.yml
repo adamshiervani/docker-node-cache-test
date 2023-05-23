@@ -143,7 +143,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-raspian-dl
+          key: ${{ runner.os }}-raspian-multiple
 
       - name: List Download folder
         run: |
@@ -151,11 +151,14 @@ jobs:
 
       - name: Download file
         run: |
-          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian.img.xz && ls -la /home/runner/debian
+          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian1.img.xz && ls -la /home/runner/debian
+          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian2.img.xz && ls -la /home/runner/debian
+          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian3.img.xz && ls -la /home/runner/debian
+          curl https://downloads.raspberrypi.org/raspios_full_armhf/images/raspios_full_armhf-2023-05-03/2023-05-03-raspios-bullseye-armhf-full.img.xz -o /home/runner/debian/raspian4.img.xz && ls -la /home/runner/debian
 
       - name: Save Primes
         id: cache-download-save
         uses: actions/cache/save@v3
         with:
           path: /home/runner/debian
-          key: ${{ runner.os }}-raspian-dl
+          key: ${{ runner.os }}-raspian-multiple
