@@ -134,7 +134,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-node-cache-test:inline
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/docker-node-cache-test
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/docker-node-cache-test:inline
           cache-to: type=inline
 
 #  registry_cache:
