@@ -132,9 +132,11 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
+          push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-node-cache-test
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/docker-node-cache-test
           cache-to: type=inline
+
 #  registry_cache:
 #    name: type=registry
 #    needs: [inline_cache]
