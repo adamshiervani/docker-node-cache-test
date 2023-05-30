@@ -127,15 +127,6 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Cache Docker Buildx layers
-        uses: buildjet/cache@main
-        with:
-          path: /tmp/.buildx-cache
-          # Key is named differently to avoid collision
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-buildx
-
       - name: Build and push docker image
         uses: docker/build-push-action@v4
         with:

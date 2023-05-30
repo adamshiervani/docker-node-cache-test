@@ -47,7 +47,7 @@ RUN apt-get update && apt-get install -yq \
     xdg-utils \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget https://mirror.dkm.cz/debian-cd/11.7.0/arm64/iso-dvd/debian-11.7.0-arm64-DVD-1.iso
+#RUN wget https://mirror.dkm.cz/debian-cd/11.7.0/arm64/iso-dvd/debian-11.7.0-arm64-DVD-1.iso
 
 # Create app directory
 WORKDIR /usr/src/app
