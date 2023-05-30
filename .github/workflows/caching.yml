@@ -115,7 +115,6 @@ jobs:
 #          cache-to: type=gha,mode=max
   inline_cache:
     name: type=inline
-    needs: gha_cache
     runs-on: buildjet-2vcpu-ubuntu-2204
     steps:
       - name: Checkout
