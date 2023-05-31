@@ -113,8 +113,8 @@ jobs:
 #          tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-node-cache-test
 #          cache-from: type=gha
 #          cache-to: type=gha,mode=max
-  inline_cache:
-    name: type=inline
+  inline_cache_hub:
+    name: type=inline hub
     runs-on: buildjet-2vcpu-ubuntu-2204
     steps:
       - name: Checkout
@@ -136,10 +136,8 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-node-cache-test:inline
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/docker-node-cache-test:inline
           cache-to: type=inline
-
-  registry_cache:
-    name: type=registry
-    needs: [inline_cache]
+  registry_cache_hub:
+    name: type=registry hub
     runs-on: buildjet-2vcpu-ubuntu-2204
     steps:
       - name: Checkout
@@ -165,6 +163,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
+          push: true
           file: ./Dockerfile
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/docker-node-cache-test:registry
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/docker-node-cache-test:registry
