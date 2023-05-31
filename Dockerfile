@@ -61,4 +61,4 @@ COPY . .
 EXPOSE 8080
 CMD [ "node", "index.js" ]
 
-RUN sleep 2
+RUN sleep 3
