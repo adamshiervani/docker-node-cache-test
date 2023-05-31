@@ -171,7 +171,11 @@ jobs:
 
   registry_cache_ghcr:
     name: type=registry ghcr
-    runs-on: buildjet-2vcpu-ubuntu-2204
+    strategy:
+      fail-fast: true # In case one of the jobs fails, the other jobs will be cancelled
+      matrix:
+        runs-on: [ buildjet-2vcpu-ubuntu-2204, ubuntu-latest ]
+    runs-on: ${{ matrix.runs-on }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -194,9 +198,9 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: ghcr.io/adamshiervani/docker-node-cache-test
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:registry
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:registry,mode=max
+          tags: ghcr.io/adamshiervani/docker-node-cache-test:registry-${{matrix.runs-on}}
+          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:registry-${{matrix.runs-on}}
+          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:registry-${{matrix.runs-on}},mode=max
 
 #  gh_cache_on_github:
 #    name: GitHub Cache on GitHub runner
