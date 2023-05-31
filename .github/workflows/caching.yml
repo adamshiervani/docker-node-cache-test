@@ -159,8 +159,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ghcr.io/docker-node-cache-test
-          cache-from: type=registry,ref=ghcr.io/docker-node-cache-test
-          cache-to: type=inline
+#          cache-from: type=registry,ref=ghcr.io/docker-node-cache-test
+#          cache-to: type=inline
 
   registry_cache_hub:
     name: type=registry hub
