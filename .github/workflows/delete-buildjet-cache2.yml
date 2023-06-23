@@ -1,11 +1,5 @@
 name: Increase Swap Space
-on:
-  workflow_dispatch:
-    inputs:
-      cache_key:
-        description: 'BuildJet Cache Key to Delete'
-        required: true
-        type: string
+on: push
 jobs:
   increase-swap-space:
     runs-on: ubuntu-latest
