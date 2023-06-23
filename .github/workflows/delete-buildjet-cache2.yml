@@ -1,0 +1,22 @@
+name: Increase Swap Space
+on:
+  workflow_dispatch:
+    inputs:
+      cache_key:
+        description: 'BuildJet Cache Key to Delete'
+        required: true
+        type: string
+jobs:
+  increase-swap-space:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: buildjet/cache-delete@v1
+        run: |
+          echo "Deleting BuildJet Cache"
+          sudo fallocate -l 16G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          sudo swapon -s
