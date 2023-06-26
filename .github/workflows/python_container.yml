@@ -7,25 +7,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Increase Swap Space
+      - name: Print OS
         run: |
-          echo hello
-      - name: Install python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
-          cache: pipenv
+          cat /etc/os-release
+
   bj_python_container:
     runs-on: buildjet-2vcpu-ubuntu-2204
     container: python:3.11-slim-bullseye
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Increase Swap Space
+      - name: Print OS
         run: |
-          echo hello
-      - name: Install python
-        uses: buildjet/setup-python@v4
-        with:
-          python-version: 3.11
-          cache: pipenv
+          cat /etc/os-release
