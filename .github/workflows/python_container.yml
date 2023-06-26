@@ -1,9 +1,8 @@
 name: Test python container
 on: push
 jobs:
-  ubuntu_python_container:
+  ubuntu_python:
     runs-on: ubuntu-latest
-    container: python:3.11-slim-bullseye
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -14,9 +13,8 @@ jobs:
       - name: Print /home/runner/work
         run: ls -la /home/runner/work
 
-  bj_python_container:
+  bj_python:
     runs-on: buildjet-2vcpu-ubuntu-2204
-    container: python:3.11-slim-bullseye
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -28,3 +26,45 @@ jobs:
         run: ls -la /home/runner/actions-runner
       - name: Print /home/runner/actions-runner/_work
         run: ls -la /home/runner/actions-runner/_work
+
+  ubuntu_python_container:
+    runs-on: ubuntu-latest
+    container: python:3.11-slim-bullseye
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Print OS
+        run: cat /etc/os-release
+      - name: Print /__w
+        run: ls -la /__w
+      - name: Print /__e
+        run: ls -la /__e
+      - name: Print /__w/_temp
+        run: ls -la /__w/_temp
+      - name: Print /__w/_actions
+        run: ls -la /__w/_actions
+      - name: Print /github/home
+        run: ls -la /github/home
+      - name: Print /github/workflow
+        run: ls -la /github/workflow
+
+  bj_python_container:
+    runs-on: buildjet-2vcpu-ubuntu-2204
+    container: python:3.11-slim-bullseye
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Print OS
+        run: cat /etc/os-release
+      - name: Print /__w
+        run: ls -la /__w
+      - name: Print /__e
+        run: ls -la /__e
+      - name: Print /__w/_temp
+        run: ls -la /__w/_temp
+      - name: Print /__w/_actions
+        run: ls -la /__w/_actions
+      - name: Print /github/home
+        run: ls -la /github/home
+      - name: Print /github/workflow
+        run: ls -la /github/workflow
