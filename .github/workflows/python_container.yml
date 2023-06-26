@@ -8,7 +8,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Print OS
-        run: cat /etc/os-release && cat /etc/lsb-release
+        run: cat /etc/os-release
+      - name: Print /home/runner/
+        run: ls -la /home/runner
+      - name: Print /home/runner/work
+        run: ls -la /home/runner/work
 
   bj_python_container:
     runs-on: buildjet-2vcpu-ubuntu-2204
@@ -17,4 +21,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Print OS
-        run: cat /etc/os-release && cat /etc/lsb-release
+        run: cat /etc/os-release
+      - name: Print /home/runner/
+        run: ls -la /home/runner
+      - name: Print /home/runner/actions-runner
+        run: ls -la /home/runner/actions-runner
+      - name: Print /home/runner/actions-runner/_work
+        run: ls -la /home/runner/actions-runner/_work
