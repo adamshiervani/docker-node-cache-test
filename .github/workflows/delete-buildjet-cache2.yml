@@ -1,7 +1,7 @@
 name: Increase Swap Space
 on: push
 jobs:
-  bj-container:
+  ubuntu_container:
     runs-on: ubuntu-latest
     container: python:3.11-slim-bullseye
     steps:
@@ -10,6 +10,11 @@ jobs:
       - name: Increase Swap Space
         run: |
           echo hello
+      - name: Install python
+        uses: buildjet/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: pipenv
   bj_container:
     runs-on: buildjet-2vcpu-ubuntu-2204
     container: python:3.11-slim-bullseye
@@ -19,3 +24,8 @@ jobs:
       - name: Increase Swap Space
         run: |
           echo hello
+      - name: Install python
+        uses: buildjet/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: pipenv
