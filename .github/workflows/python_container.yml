@@ -60,6 +60,8 @@ jobs:
         run: ls -la /__w
       - name: Print /__e
         run: ls -la /__e
+      - name: Print /__t
+        run: ls -la /__t
       - name: Print /__w/_temp
         run: ls -la /__w/_temp
       - name: Print /__w/_actions
